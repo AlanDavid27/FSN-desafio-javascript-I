@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const alunosDaEscola = [
+            { nome: "Henrique", notas: [], cursos: [], faltas: 5 },
+            { nome: "Edson", notas: [], cursos: [], faltas: 2 },
+            { nome: "Bruno", notas: [10, 9.8, 9.6], cursos: [], faltas: 0 },
+            { nome: "Guilherme", notas: [10, 9.8, 9.6], cursos: [{ nomeDoCurso: "Full Stack", dataMatricula: new Date }], faltas: 0 },
+            { nome: "Carlos", notas: [], cursos: [], faltas: 0 }, 
+            { nome: "Lucca", notas: [10, 9.8, 9.6], cursos: [{ nomeDoCurso: "UX", dataMatricula: new Date }], faltas: 0 }
+        ];
+
+
+        // implementação
+        function adicionarAluno(pNome) {
+            /*if (pNome == null || pNome.trim().length() <= 0 ) {
+                alert("Favor digitar o nome do aluno!");
+                return;
+            }*/
+
+            var existeAluno = false;
+
+            alunosDaEscola.forEach(function (aluno) {
+
+                if (aluno.nome == pNome) {
+                    existeAluno = true;
+                    return;
+                }
+
+            });
+
+            if (existeAluno) {
+                alert("Aluno já cadastrado");
+            } else {
+                alunosDaEscola.push({ nome: pNome, notas: [], cursos: [], faltas: 0});
+                alert("Aluno cadastrado com sucesso");
+            }
+        }
+
+        function listarAlunos(){
+            
+            var texto = "";
+            
+            alunosDaEscola.forEach(function (aluno) {
+                texto = texto + "\nAluno: " + aluno.nome + " Faltas: " + (aluno.faltas != null ? aluno.faltas : 0) ;
+            });
+
+            alert(texto);
+        }
+
+        function buscarAluno(pNome){
+
+            /*if (pNome == null || pNome.trim().length() <= 0) {
+                alert("Favor digitar o nome do aluno!");
+                return;
+            }*/
+
+            var existeAluno = false;
+            
+            alunosDaEscola.forEach(function (aluno) {
+
+                if (aluno.nome.toUpperCase == pNome.toUpperCase()) {
+                    existeAluno = true;
+                    return;
+                }
+            });
+
+            if (existeAluno) {
+                alert("O Aluno " + pNome + " foi encontrado!");
+            } else {
+                alert("O Aluno " + pNome + " não foi encontrado!");
+            }
+        }
+
+        function matricularAluno(pAluno, pCurso){
+            
+            var existeAluno = false;
+            
+            alunosDaEscola.forEach(function (aluno) {
+
+                if (aluno.nome.toUpperCase() == pAluno.toUpperCase()) {
+                    existeAluno = true;
+                    return;
+                }
+            });
+
+            if (existeAluno) {
+                
+                alunosDaEscola.forEach(function (aluno) {
+
+                    if (aluno.nome.toUpperCase() == pAluno.toUpperCase()) {
+                        aluno.cursos.push({ nomeDoCurso: pCurso, dataMatricula: new Date });
+                        alert("Aluno Matriculado");
+                        return;
+                    }
+                }); 
+                
+            } else {
+                alert("Aluno não cadastrado");
+            }
+        }
+
+    
+        adicionarAluno("Alan");
+        //listarAlunos();
+        //buscarAluno(null);
+        //buscarAluno("");
+        matricularAluno("Alan", "Enfermgem");
+        
+
+        alunosDaEscola.forEach(function (aluno) {
+
+            
+
+            aluno.cursos.forEach(function (curso) {
+
+                if (aluno.nome == "Alan") {
+                    
+                    var texto = "";
+
+                    texto = texto + "Aluno: " + aluno.nome
+                    texto = texto + " Curso: " + curso.nomeDoCurso + " Data Matricula: " + curso.dataMatricula;
+                    alert(texto);
+                }
+
+
+                
+            }
+
+        )});
+        function aplicarFalta(pFaltas){
+
+            var existeAluno = false;
+            
+            alunosDaEscola.forEach(function (aluno) {
+
+                if (aluno.faltas.toUpperCase() == pFaltas.toUpperCase()) {
+                    existeAluno = true;
+                    return;
+                }
+                if (existeAluno) {
+                
+                alunosDaEscola.forEach(function (aluno) {
+
+                    if (aluno.faltas.toUpperCase() == pAluno.toUpperCase()) {
+                        aluno.faltas.push({ faltas: pFaltas });
+                        alert("Falta aplicada ao aluno");
+                        return;
+                    }
+                }); 
+                
+            } else {
+                alert("Aluno não cadastrado");
+            }
+            });
+
+        }
+        aplicarFalta(1)
+
+            /*
+            Ao receber um aluno devidamente cadastrado em nossa lista. Você deverá incrementar uma falta ao
+            aluno. Você deverá dar um feedback ao concluir a tarefa. Só poderá aplicar falta em aluno se o
+            mesmo tiver matriculado em um curso.
+            */
+    
+
+
+
+
+    </script>
+</body>
+
+</html>
+<!-- if (aluno.faltas > 3) |{
+    alert("Reprovado")
+} else {
+
+    var qtdNotas = 0;
+    var somaNoma = 0;
+
+    aluno.notas.forEach(function (nota) {
+        qtdNotas = qtdNotas + 1;
+        somaNoma = somaNoma + nota
+    }
+
+    mediaNota = somaNoma / qtdNotas;
+    aluno.notas.length
+} -->
